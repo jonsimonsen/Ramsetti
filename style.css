@@ -1,0 +1,62 @@
+.game-area {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.grid {
+  width: 240px;
+  height: 480px;
+  background-color: #FFFF88;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid div {
+  height: 20px;
+  width: 20px;
+}
+
+.next-box {
+  height: 80px;
+  width: 80px;
+  border: 4px red solid;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: lightgray;
+  margin-left: 40px;
+}
+
+.next-box div {
+  height: 20px;
+  width: 20px;
+}
+
+.tetrimino {
+  background-color: blue;
+  box-sizing: border-box;
+  border: 1px lightblue solid;
+}
+
+.next {
+  background-color: black;
+  box-sizing: border-box;
+  border: 1px gray solid;
+}
+
+.occupied {
+  background-color: white;
+  border: 1px lightgray solid;
+}
+
+.roof {
+  /*background-color: white;
+  box-sizing: border-box;
+  border: 1px white solid;*/
+}
+
+.wall {
+  background-color: gray;
+  box-sizing: border-box;
+  border: 1px gray solid;
+}
