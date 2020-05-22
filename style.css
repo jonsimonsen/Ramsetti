@@ -1,13 +1,43 @@
-.game-area {
+body {
+  background: url("fishy.jpg");
+  background-size: cover;
+  color: brown;
+  text-align: center;
+}
+
+.main-row {
   margin-top: 10px;
   display: flex;
+  justify-content: space-around;
+}
+
+.game-area {
+  display: flex;
   align-items: center;
+  background-color: black;
+  flex-basis: 25%;
+  border: 2px orange solid;
+}
+
+.instructions {
+  background-color: lightgray;
+  padding: 10px;
+  flex-basis: 25%;
+  border: 2px orange solid;
+}
+
+.high-scores {
+  background-color: lightgray;
+  padding: 10px;
+  flex-basis: 25%;
+  border: 2px orange solid;
 }
 
 .grid {
   width: 240px;
   height: 480px;
-  background-color: #FFFF88;
+  background-color: lightblue;
+  /*background-color: #FFFF88;*/
   display: flex;
   flex-wrap: wrap;
 }
@@ -33,9 +63,9 @@
 }
 
 .tetrimino {
-  background-color: blue;
+  background-color: orange;
   box-sizing: border-box;
-  border: 1px lightblue solid;
+  border: 1px #FFFFAA solid;
 }
 
 .next {
@@ -50,13 +80,17 @@
 }
 
 .roof {
-  /*background-color: white;
+  background-color: white;
   box-sizing: border-box;
-  border: 1px white solid;*/
+  border: 1px white solid;
 }
 
 .wall {
   background-color: gray;
   box-sizing: border-box;
   border: 1px gray solid;
+}
+
+.grid.paused > div {
+  display: none;
 }

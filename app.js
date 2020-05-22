@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let pos
   let rot
 
-  
+
   showNext()
   spawn()
 
@@ -384,12 +384,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if(!paused) {
       clearInterval(timerId)
       timerId = null
+      gameContainer.classList.add("paused")
     }
     else {
       //Make sure the next box is updated
       showNext()
 
       //Start executing functions
+      gameContainer.classList.remove("paused")
       timerId = setInterval(descend, gameSpeed)
     }
 
