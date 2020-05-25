@@ -6,6 +6,10 @@ The clone is created based on a JS tutorial by freeCodeCamp on Youtube.
 # How to play
 Put all files in its own folder and open index.html in a web browser.  
 
+# Version info
+The app is currently being developed.  
+The settings are not supposed to resemble a real game yet. Levels are shorter to allow for quicker testing.  
+
 # Issues
 -No option to move or rotate once a piece has touched another piece.  
 -Some timing issues can result in overlapping pieces.  

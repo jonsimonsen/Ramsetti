@@ -1,6 +1,7 @@
 body {
-  background: url("fishy.jpg");
-  background-size: cover;
+  /*background: url("fishy.jpg");
+  background-size: cover;*/
+  background-color: lightblue;
   color: brown;
   text-align: center;
 }
