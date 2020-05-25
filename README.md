@@ -17,3 +17,7 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 -Scoring algorithm doesn't award playing at higher speeds enough.  
 -The background image had not been added to the repo.  
 -Instructions can be clearer.  
+
+# Currently prioritized issues
+-How to prevent gamearea from growing too much when increasing window width.  
+-Clean up css file.
