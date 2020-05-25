@@ -20,4 +20,5 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 
 # Currently prioritized issues
 -How to prevent gamearea from growing too much when increasing window width.  
--Clean up css file.
+-Clean up css file.  
+-Is the hiding approach for adjusting nextbox vertically acceptable?  
