@@ -6,12 +6,38 @@ body {
   text-align: center;
 }
 
+/****************
+ *Row-level divs*
+ ****************/
+
+/*Common header/footer style*/
+.dark {
+ color: lightgray;
+ background-color: darkblue;
+ padding: 0.5rem;
+}
+
 .main-row {
   margin-top: 10px;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-around;
 }
+
+/*************
+ *Banner divs*
+ *************/
+
+#start-button {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  background-color: green;
+  color: white;
+}
+
+/****************
+ *Main area divs*
+ ****************/
 
 .game-area {
   display: flex;
@@ -28,25 +54,14 @@ body {
   border: 2px orange solid;
 }
 
-/*.instructions {
-  background-color: lightgray;
-  padding: 10px;
-  flex-basis: 25%;
-  border: 2px orange solid;
-}
-
-.high-scores {
-  background-color: lightgray;
-  padding: 10px;
-  flex-basis: 25%;
-  border: 2px orange solid;
-}*/
+/****************
+ *Game area divs*
+ ****************/
 
 .grid {
   width: 240px;
   height: 480px;
   background-color: lightblue;
-  /*background-color: #FFFF88;*/
   display: flex;
   flex-wrap: wrap;
 }
@@ -54,6 +69,17 @@ body {
 .grid div {
   height: 20px;
   width: 20px;
+}
+
+.grid.paused > div {
+  display: none;
+}
+
+.status {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .next-box {
@@ -70,6 +96,14 @@ body {
   height: 20px;
   width: 20px;
 }
+
+.buffer {
+  color: black;
+}
+
+/******************
+ *Playfield styles*
+ ******************/
 
 .tetrimino {
   background-color: orange;
@@ -100,36 +134,12 @@ body {
   border: 1px gray solid;
 }
 
-.grid.paused > div {
-  display: none;
-}
-
-.dark {
-  color: lightgray;
-  background-color: darkblue;
-  padding: 0.5rem;
-}
+/*************
+ *Footer divs*
+ *************/
 
 .footer-cols {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-#start-button {
-  font-size: 1.5rem;
-  padding: 0.5rem;
-  background-color: green;
-  color: white;
-}
-
-.status {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.buffer {
-  color: black;
 }
