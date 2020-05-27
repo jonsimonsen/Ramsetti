@@ -399,4 +399,25 @@ document.addEventListener('DOMContentLoaded', () => {
     paused = !paused
   })
 
+  //In development
+  let showBtn = document.getElementsByClassName("collapsing")
+  showBtn[0].addEventListener("click", function() {
+    this.classList.toggle("active")
+    console.log(this)
+    let node = this.nextElementSibling
+
+    while(node) {
+      console.log(node)
+      if(node.nodeType === Node.ELEMENT_NODE) {
+        if(node.style.display === "block") {
+          node.style.display = "none"
+        }
+        else {
+          node.style.display = "block"
+        }
+      }
+      node = node.nextElementSibling || node.nextSibling
+    }
+  })
+
 })
