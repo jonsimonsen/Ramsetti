@@ -19,7 +19,6 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 -Instructions can be clearer.  
 
 # Currently prioritized issues
--How to prevent gamearea from growing too much when increasing window width.  
 -Include JQuery in project.  
 
 # Solved issues
@@ -29,3 +28,5 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 -Fixed JS to hide/show all siblings when toggling How to play button. TODO: Try doing this with JQuery.  
 -Changed flex-direction and order on small devices to get a one column setup with the game board near the top.  
 -Changed flex-direction in the footer for the same reason.  
+-Set game area to a fixed width of 360 pixels.  
+-Adjusted the breakpoint to be at 900px (multi-column to one-column).  

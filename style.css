@@ -4,6 +4,7 @@ body {
   background-color: lightblue;
   color: brown;
   text-align: center;
+  margin: 0.5rem;
 }
 
 /****************
@@ -18,10 +19,14 @@ body {
 }
 
 .main-row {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  /*margin-top: 10px;
+  margin-bottom: 10px;*/
   display: flex;
   justify-content: space-around;
+}
+
+.main-row > div {
+  margin: 8px;
 }
 
 /*************
@@ -47,9 +52,9 @@ body {
   display: flex;
   color: lightgray;
   background-color: black;
-  flex-basis: 25%;
   border: 2px orange solid;
   order: 2;
+  width: 360px;
 }
 
 .high-scores {
@@ -58,7 +63,7 @@ body {
 
 .sidebar {
   background-color: lightgray;
-  padding: 10px;
+  padding: 8px;
   flex-basis: 25%;
   border: 2px orange solid;
 }
@@ -184,17 +189,23 @@ body {
   background-color: #ccc;
 }
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 900px) {
   .main-row {
     flex-direction: column;
+    align-items: center;
   }
 
   .instructions {
     order: 3;
+    width: calc(100% - 20px);
   }
 
   .instructions > p {
     display: none;
+  }
+
+  .high-scores {
+    width: calc(100% - 20px);
   }
 
   .footer-cols {
