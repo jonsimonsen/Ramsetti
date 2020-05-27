@@ -186,7 +186,6 @@ body {
 
 @media all and (max-width: 600px) {
   .main-row {
-    /*display: block;*/
     flex-direction: column;
   }
 
@@ -196,5 +195,9 @@ body {
 
   .instructions > p {
     display: none;
+  }
+
+  .footer-cols {
+    flex-direction: column;
   }
 }
