@@ -27,3 +27,4 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 -Cleaned up and commented css file according to advice.  
 -Fixed flexbox adjustment hack by removing the unwanted element and using flex-basis instead.  
 -Fixed JS to hide/show all siblings when toggling How to play button. TODO: Try doing this with JQuery.  
+-Changed flex-direction and order on small devices to get a one column setup with the game board near the top.  

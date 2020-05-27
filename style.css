@@ -39,12 +39,21 @@ body {
  *Main area divs*
  ****************/
 
+.instructions {
+  order: 0;
+}
+
 .game-area {
   display: flex;
   color: lightgray;
   background-color: black;
   flex-basis: 25%;
   border: 2px orange solid;
+  order: 2;
+}
+
+.high-scores {
+  order: 4;
 }
 
 .sidebar {
@@ -112,23 +121,27 @@ body {
  *Playfield styles*
  ******************/
 
+/*Currently controlled tetrimino*/
 .tetrimino {
   background-color: orange;
   box-sizing: border-box;
   border: 1px #FFFFAA solid;
 }
 
+/*Next box tetrimino*/
 .next {
   background-color: black;
   box-sizing: border-box;
   border: 1px gray solid;
 }
 
+/*occupied squares (not walls)*/
 .occupied {
   background-color: white;
   border: 1px lightgray solid;
 }
 
+/*invisible squares at the top of the play area (obstucts the )*/
 .roof {
   background-color: white;
   box-sizing: border-box;
@@ -173,7 +186,12 @@ body {
 
 @media all and (max-width: 600px) {
   .main-row {
-    display: block;
+    /*display: block;*/
+    flex-direction: column;
+  }
+
+  .instructions {
+    order: 3;
   }
 
   .instructions > p {
