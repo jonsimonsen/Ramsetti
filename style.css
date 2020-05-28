@@ -1,3 +1,15 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body {
   /*background: url("fishy.jpg");
   background-size: cover;*/
@@ -24,7 +36,8 @@ body {
 }
 
 .main-row > div {
-  margin: 8px;
+  margin: 0.5rem;
+  border: 0.125rem orange solid;
 }
 
 /*************
@@ -50,9 +63,8 @@ body {
   display: flex;
   color: lightgray;
   background-color: black;
-  border: 2px orange solid;
   order: 2;
-  width: 368px;
+  width: 372px;   /*Set manually based on size of squares, width of playfield and width of nextbox.*/
 }
 
 .high-scores {
@@ -61,9 +73,8 @@ body {
 
 .sidebar {
   background-color: lightgray;
-  padding: 8px;
+  padding: 0.5rem;
   flex-basis: 25%;
-  border: 2px orange solid;
 }
 
 /****************
@@ -71,16 +82,16 @@ body {
  ****************/
 
 .grid {
-  width: 240px;
-  height: 480px;
+  width: 240px; /*Manual from squares per row and width of squares*/
+  height: 480px;  /*Same, except for column.*/
   background-color: lightblue;
   display: flex;
   flex-wrap: wrap;
 }
 
 .grid div {
-  height: 20px;
-  width: 20px;
+  height: 20px; /*Manual, square dimension*/
+  width: 20px;  /*Manual, square dimension*/
 }
 
 .grid.paused > div {
@@ -102,17 +113,18 @@ body {
 }
 
 .next-area h3 {
-  margin-bottom: 0px;
+  margin-bottom: 0px; /*Use only the margin for the next-box*/
 }
 
 .next-box {
   height: 80px;
   width: 80px;
-  border: 4px red solid;
+  border: 0.25rem red solid;
   display: flex;
   flex-wrap: wrap;
   background-color: lightgray;
-  margin: 20px;
+  margin: 20px; /*Should equal the dimension of squares. An alternative is to use 1rem (will need to adjust other elements)*/
+  box-sizing: content-box;
 }
 
 .next-box div {
@@ -123,13 +135,6 @@ body {
 /******************
  *Playfield styles*
  ******************/
-
-/*Currently controlled tetrimino*/
-.tetrimino {
-  background-color: orange;
-  box-sizing: border-box;
-  border: 1px #FFFFAA solid;
-}
 
 /*Adding color schemes to the different shapes*/
 .purple {
@@ -150,27 +155,18 @@ body {
 /*Next box tetrimino*/
 .next {
   background-color: black;
-  box-sizing: border-box;
   border: 1px gray solid;
-}
-
-/*occupied squares (not walls)*/
-.occupied {
-  /*background-color: white;
-  border: 1px lightgray solid;*/
 }
 
 /*invisible squares at the top of the play area (hides falling blocks)*/
 .roof {
   background-color: white;
-  box-sizing: border-box;
   border: 1px white solid;
 }
 
 /*Walls and floor of the play area. Should override all other play area styles.*/
 .wall {
   background-color: gray;
-  box-sizing: border-box;
   border: 1px gray solid;
 }
 
@@ -190,10 +186,10 @@ body {
 
 .collapsing {
   cursor: pointer;
-  padding: 18px;
-  width: calc(100% - 38px);
-  border: 2px solid #777;
-  border-radius: 8px;
+  padding: 1rem;
+  width: 100%;
+  border: 0.125rem solid #777;
+  border-radius: 0.5rem;
   text-align: center;
   outline: none;
 }
@@ -210,7 +206,7 @@ body {
 
   .instructions {
     order: 3;
-    width: calc(100% - 20px);
+    width: 100%;
   }
 
   .instructions > p {
@@ -218,7 +214,7 @@ body {
   }
 
   .high-scores {
-    width: calc(100% - 20px);
+    width: 100%;
   }
 
   .footer-cols {

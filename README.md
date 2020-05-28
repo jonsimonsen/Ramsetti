@@ -34,3 +34,5 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 -The pieces now have different colors, and they keep that color after landing.  
 -The game over message is now its own paragraph to avoid messing up the layout.  
 -The scoring algorithm has been fixed to prevent decimal values. This depends on not altering the score and gamespeed related constants in the JS file.  
+-After a tip, all elements now have (global) border-box styling except the next box.  
+-Changed all measures to use rem except those that depend on the size and number of squares or thin (1px) borders.  
