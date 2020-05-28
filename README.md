@@ -21,7 +21,7 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 # Currently prioritized issues
 -Include JQuery in project.  
 
-# Solved issues
+# Solved issues/new features
 -Removed duplicate css code by using the same classes on elements that should share styles.  
 -Cleaned up and commented css file according to advice.  
 -Fixed flexbox adjustment hack by removing the unwanted element and using flex-basis instead.  
@@ -36,3 +36,5 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 -The scoring algorithm has been fixed to prevent decimal values. This depends on not altering the score and gamespeed related constants in the JS file.  
 -After a tip, all elements now have (global) border-box styling except the next box.  
 -Changed all measures to use rem except those that depend on the size and number of squares or thin (1px) borders.  
+-Using section tags for vertical sections instead of divs. (how to improve accessibility and consistency?)  
+-Added invisible h2 to main-row for labeling purposes (for use by screen readers and similar).  

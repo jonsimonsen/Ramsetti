@@ -409,7 +409,7 @@ document.addEventListener('DOMContentLoaded', () => {
     paused = !paused
   })
 
-  //In development
+  //Allow instructions to be collapsed (TODO: JQuery)
   let showBtn = document.getElementsByClassName("collapsing")
   showBtn[0].addEventListener("click", function() {
     this.classList.toggle("active")

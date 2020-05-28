@@ -19,6 +19,13 @@ body {
   margin: 0.5rem;
 }
 
+/*Invisible elements*/
+.invisible {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
 /****************
  *Row-level divs*
  ****************/
