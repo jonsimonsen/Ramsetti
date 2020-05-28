@@ -19,8 +19,6 @@ body {
 }
 
 .main-row {
-  /*margin-top: 10px;
-  margin-bottom: 10px;*/
   display: flex;
   justify-content: space-around;
 }
@@ -133,6 +131,9 @@ body {
   border: 1px #FFFFAA solid;
 }
 
+/*Adding color schemes to the different shapes*/
+
+
 /*Next box tetrimino*/
 .next {
   background-color: black;
@@ -146,13 +147,14 @@ body {
   border: 1px lightgray solid;
 }
 
-/*invisible squares at the top of the play area (obstucts the )*/
+/*invisible squares at the top of the play area (hides falling blocks)*/
 .roof {
   background-color: white;
   box-sizing: border-box;
   border: 1px white solid;
 }
 
+/*Walls and floor of the play area. Should override all other play area styles.*/
 .wall {
   background-color: gray;
   box-sizing: border-box;
@@ -174,15 +176,13 @@ body {
  *******************/
 
 .collapsing {
-  background-color: #EEE;
-  color: #444;
   cursor: pointer;
   padding: 18px;
-  width: 100%;
-  border: none;
+  width: calc(100% - 38px);
+  border: 2px solid #777;
+  border-radius: 8px;
   text-align: center;
   outline: none;
-  font-size: 15px;
 }
 
 .active, .collapsing:hover {

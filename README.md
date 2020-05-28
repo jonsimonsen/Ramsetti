@@ -30,3 +30,4 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 -Changed flex-direction in the footer for the same reason.  
 -Set game area to a fixed width of 360 pixels.  
 -Adjusted the breakpoint to be at 900px (multi-column to one-column).  
+-Changed "How to" from a button to a clickable h2 styled as a button. Changed some other styles to align it more with the general design.  
