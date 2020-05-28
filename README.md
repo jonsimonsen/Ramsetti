@@ -31,3 +31,6 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 -Set game area to a fixed width of 360 pixels.  
 -Adjusted the breakpoint to be at 900px (multi-column to one-column).  
 -Changed "How to" from a button to a clickable h2 styled as a button. Changed some other styles to align it more with the general design.  
+-The pieces now have different colors, and they keep that color after landing.  
+-The game over message is now its own paragraph to avoid messing up the layout.  
+-The scoring algorithm has been fixed to prevent decimal values. This depends on not altering the score and gamespeed related constants in the JS file.  

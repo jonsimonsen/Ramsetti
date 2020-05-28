@@ -52,7 +52,7 @@ body {
   background-color: black;
   border: 2px orange solid;
   order: 2;
-  width: 360px;
+  width: 368px;
 }
 
 .high-scores {
@@ -132,7 +132,20 @@ body {
 }
 
 /*Adding color schemes to the different shapes*/
+.purple {
+  background-color: purple;
+  border: 1px pink solid;
+}
 
+.orange {
+  background-color: orange;
+  border: 1px #FFFFAA solid;
+}
+
+.gray {
+  background-color: lightgray;
+  border: 1px white solid;
+}
 
 /*Next box tetrimino*/
 .next {
@@ -143,8 +156,8 @@ body {
 
 /*occupied squares (not walls)*/
 .occupied {
-  background-color: white;
-  border: 1px lightgray solid;
+  /*background-color: white;
+  border: 1px lightgray solid;*/
 }
 
 /*invisible squares at the top of the play area (hides falling blocks)*/

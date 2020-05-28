@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Create grid
   const height = 20
   const width = 12 //Includes walls
-  const startRow = -3 //Number of invisible rows above the game board
+  const startRow = -3 //Number of invisible rows above the game board (as a negative number)
 
   let gameContainer = document.getElementsByClassName("grid")[0]
 
@@ -35,9 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Create row
     for(let j = 0; j < width - 2; j++) {
-      // let inner = document.createElement("div")
-      // inner.innerHTML = i * width + j + 1
-      // gameContainer.appendChild(inner)
       gameContainer.appendChild(document.createElement("div"))
     }
 
@@ -71,17 +68,17 @@ document.addEventListener('DOMContentLoaded', () => {
   //Animation
   let paused = true //Keep track of pause state
   let timerId = null  //Used for gravity ticks.
-  let gameSpeed = 480 //milliseconds between gravity ticks
-  let maxSpeed = 240 //highest speed before going to killSpeed
-  let killSpeed = 48 //final level speed
+  let gameSpeed = 400 //milliseconds between gravity ticks
+  let maxSpeed = 80 //highest speed before going to killSpeed
+  let killSpeed = 40 //final level speed
   const speedDip = gameSpeed / 10
-  const colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'brown']
+  const colors = ['purple', 'orange', 'gray']
 
   //Scoring
-  const baseScore = 30 * gameSpeed
+  const baseScore = 100800
   let score = 0
   let lines = 0
-  const linesPerLevel = 6
+  const linesPerLevel = 1
 
   //Tetriminoes
   const jTetrimino = [
@@ -150,15 +147,32 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---------\
   // ---------\
 
-  //Create a tetrimino at the top
+  //Create a tetrimino at the top (would make sense to use classes eventually)
+  let currentColor
   let current
-  let next = tetriminoes[Math.floor(Math.random() * tetriminoes.length)]
+  let nextColor
+  let next = makePiece()
   let pos
   let rot
 
 
   showNext()
   spawn()
+
+  //Create a new tetrimino
+  function makePiece() {
+    let selection = Math.floor(Math.random() * tetriminoes.length)
+    if(selection === 0 || selection === 3){
+      nextColor = colors[0]
+    }
+    else if(selection === 1 || selection === 4){
+      nextColor = colors[1]
+    }
+    else{
+      nextColor = colors[2]
+    }
+    return tetriminoes[selection]
+  }
 
   //Create a new tetrimino
   function spawn() {
@@ -169,8 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
     pos = 4
     rot = 0
     current = next
+    currentColor = nextColor
     gameOver()
-    next = tetriminoes[Math.floor(Math.random() * tetriminoes.length)]
+    next = makePiece()
     draw()
     if(!paused){
       showNext()
@@ -198,14 +213,14 @@ document.addEventListener('DOMContentLoaded', () => {
   //draw tetrimino
   function draw() {
     current[rot].forEach(filled => {
-      squares[filled + pos].classList.add('tetrimino')
+      squares[filled + pos].classList.add('tetrimino', currentColor)
     })
   }
 
   //undraw tetrimino
   function undraw() {
     current[rot].forEach(filled => {
-      squares[filled + pos].classList.remove('tetrimino')
+      squares[filled + pos].classList.remove('tetrimino', currentColor)
     })
   }
 
@@ -287,10 +302,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function update(){
     let firstRow = Math.floor((pos + current[rot][0]) / width)
     let lastRow = Math.floor((pos + current[rot][3]) / width)
-    console.log(firstRow)
-    console.log(lastRow)
-    console.log(pos)
-    console.log(document.getElementsByClassName("grid")[0])
     let fullRows = 0
     for(let i = lastRow; i >= firstRow; i--){
       let full = true
@@ -306,8 +317,6 @@ document.addEventListener('DOMContentLoaded', () => {
         //Remove cleared row
         for(let k = 0; k < width; k++){
           let targetSquare = gameContainer.children[i * width]
-          console.log(i * width)
-          console.log(targetSquare)
           gameContainer.removeChild(targetSquare)
         }
       }
@@ -315,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //Calculate and update score
     let multiplier = 0
     if(fullRows === 1){
-      multiplier = 2
+      multiplier = 1
       lines++
     }
     else if(fullRows === 2){
@@ -366,6 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else{
       gameSpeed = killSpeed
     }
+    console.log(gameSpeed)
     clearInterval(timerId)
     timerId = setInterval(descend, gameSpeed)
   }
@@ -373,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //Game over check
   function gameOver(){
     if(current[rot].some(index => squares[pos + index].classList.contains("occupied"))){
-      scoreDisplay.innerHTML += ' - Game Over'
+      document.getElementsByClassName('game-state')[0].innerHTML = 'Game Over'
       clearInterval(timerId)
     }
   }
@@ -403,7 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let showBtn = document.getElementsByClassName("collapsing")
   showBtn[0].addEventListener("click", function() {
     this.classList.toggle("active")
-    console.log(this)
+    //console.log(this)
     let node = this.nextElementSibling
 
     while(node) {
