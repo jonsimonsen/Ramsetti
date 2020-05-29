@@ -1,3 +1,7 @@
+/****************
+ *General styles*
+ ****************/
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -42,7 +46,7 @@ body {
   justify-content: space-around;
 }
 
-.main-row > div {
+.main-row > section {
   margin: 0.5rem;
   border: 0.125rem orange solid;
 }
@@ -58,9 +62,15 @@ body {
   color: white;
 }
 
-/****************
- *Main area divs*
- ****************/
+/********************
+ *Main area sections*
+ ********************/
+
+ .sidebar {
+   background-color: lightgray;
+   padding: 0.5rem;
+   flex-basis: 25%;
+ }
 
 .instructions {
   order: 0;
@@ -76,12 +86,6 @@ body {
 
 .high-scores {
   order: 4;
-}
-
-.sidebar {
-  background-color: lightgray;
-  padding: 0.5rem;
-  flex-basis: 25%;
 }
 
 /****************

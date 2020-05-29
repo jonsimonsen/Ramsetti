@@ -20,6 +20,7 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 
 # Currently prioritized issues
 -Include JQuery in project.  
+-Find out how to section the footer.  
 
 # Solved issues/new features
 -Removed duplicate css code by using the same classes on elements that should share styles.  
