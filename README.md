@@ -19,17 +19,20 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 -Instructions can be clearer.  
 
 # Currently prioritized issues
--Include JQuery in project.  
+-Include more JQuery in project.  
 -Find out how to section the footer.  
 -Do we actually use the universal selector since some elements are overriding it later? Maybe we can put it on sections instead.  
 -Can we get around the hacky solution of putting borders in the same color on roof squares to make sure the border on tetrimino squares isn't visible?  
 -Unrelated: font size 100%?  
+-Bower(Yarn), node, grunt, gulp  
+-iTerm  
+-semikolon i JavaScript?  
 
 # Solved issues/new features
 -Removed duplicate css code by using the same classes on elements that should share styles.  
 -Cleaned up and commented css file according to advice.  
 -Fixed flexbox adjustment hack by removing the unwanted element and using flex-basis instead.  
--Fixed JS to hide/show all siblings when toggling How to play button. TODO: Try doing this with JQuery.  
+-Fixed JS to hide/show all siblings when toggling How to play button.  
 -Changed flex-direction and order on small devices to get a one column setup with the game board near the top.  
 -Changed flex-direction in the footer for the same reason.  
 -Set game area to a fixed width of 360 pixels.  

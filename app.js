@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
+/*document.addEventListener('DOMContentLoaded', () => {*/
+$(document).ready(function() {
+
   // ----------------------------\
   // Initialization of game board\
   // ----------------------------\
@@ -409,25 +411,10 @@ document.addEventListener('DOMContentLoaded', () => {
     paused = !paused
   })
 
-  //Allow instructions to be collapsed (TODO: JQuery)
-  let showBtn = document.getElementsByClassName("collapsing")
-  showBtn[0].addEventListener("click", function() {
-    this.classList.toggle("active")
-    //console.log(this)
-    let node = this.nextElementSibling
-
-    while(node) {
-      console.log(node)
-      if(node.nodeType === Node.ELEMENT_NODE) {
-        if(node.style.display === "block") {
-          node.style.display = "none"
-        }
-        else {
-          node.style.display = "block"
-        }
-      }
-      node = node.nextElementSibling || node.nextSibling
-    }
+  //Allow instructions to be collapsed
+  $(".collapsing").click(function() {
+    $(this).toggleClass("active")
+    $(this).siblings().toggle()
   })
 
 })
