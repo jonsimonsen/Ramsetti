@@ -21,6 +21,9 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 # Currently prioritized issues
 -Include JQuery in project.  
 -Find out how to section the footer.  
+-Do we actually use the universal selector since some elements are overriding it later? Maybe we can put it on sections instead.  
+-Can we get around the hacky solution of putting borders in the same color on roof squares to make sure the border on tetrimino squares isn't visible?  
+-Unrelated: font size 100%?  
 
 # Solved issues/new features
 -Removed duplicate css code by using the same classes on elements that should share styles.  
