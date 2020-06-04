@@ -47,3 +47,5 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 -Changed all measures to use rem except those that depend on the size and number of squares or thin (1px) borders.  
 -Using section tags for vertical sections instead of divs. (how to improve accessibility and consistency?)  
 -Added invisible h2 to main-row for labeling purposes (for use by screen readers and similar).  
+-Using JQuery for some of the dynamic elements on the page (startbutton, score display and toggling instructions/how to play)  
+-Fixed a bug that caused the window to scroll when rotating pieces by using keydown for the eventlistener and preventDefault.  
