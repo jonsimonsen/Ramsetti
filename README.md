@@ -22,13 +22,9 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 -Include more JQuery in project.  
 -Find out how to section the footer.  
 -Do we actually use the universal selector since some elements are overriding it later? Maybe we can put it on sections instead.  
--Can we get around the hacky solution of putting borders in the same color on roof squares to make sure the border on tetrimino squares isn't visible?  
 -Unrelated: font size 100%?  
 -Bower(Yarn), node, grunt, gulp  
 -iTerm  
--semikolon i JavaScript?  
--id vs. class  
--space?  
 
 # Solved issues/new features
 -Removed duplicate css code by using the same classes on elements that should share styles.  
@@ -49,3 +45,4 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 -Added invisible h2 to main-row for labeling purposes (for use by screen readers and similar).  
 -Using JQuery for some of the dynamic elements on the page (startbutton, score display and toggling instructions/how to play)  
 -Fixed a bug that caused the window to scroll when rotating pieces by using keydown for the eventlistener and preventDefault.  
+-Startbutton text changes based on game state.  

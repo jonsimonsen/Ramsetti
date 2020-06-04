@@ -386,6 +386,7 @@ $(document).ready(function() {
       clearInterval(timerId);
       timerId = null;
       gameContainer.classList.add("paused");
+      $(this).text("Continue");
     }
     else {
       //Make sure the next box is updated
@@ -394,6 +395,7 @@ $(document).ready(function() {
       //Start executing functions
       gameContainer.classList.remove("paused");
       timerId = setInterval(descend, gameSpeed);
+      $(this).text("Pause");
     }
 
     //Toggle pause state
