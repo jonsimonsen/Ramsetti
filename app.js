@@ -236,7 +236,7 @@ $(document).ready(function() {
       }
     }
   }
-  document.addEventListener('keyup', control);
+  document.addEventListener('keydown', control);
 
   //Make tetrimino descend
   function descend() {
