@@ -19,7 +19,8 @@ $(document).ready(function() {
   //Animation
   let paused;    //Keep track of pause state
   let timerId;   //Used for gravity ticks.
-  let gameSpeed = 400;  //milliseconds between gravity ticks
+  let gameSpeed;        //milliseconds between gravity ticks
+  let startSpeed = 400;
   let maxSpeed = 80;    //highest speed before going to killSpeed
   let killSpeed = 40;   //final level speed
   const speedDip = gameSpeed / 10;
@@ -99,6 +100,9 @@ $(document).ready(function() {
 
   //Set up a new Game
   function newGame() {
+    //Remove all content from the game board
+    $(".grid").empty();
+
     gameContainer = document.getElementsByClassName("grid")[0];
 
     //Create roof (should be invisible)
@@ -153,6 +157,7 @@ $(document).ready(function() {
     lines = 0;
     paused = true;
     timerId = null;
+    gameSpeed = startSpeed;
     next = makePiece();
 
     showNext();
@@ -390,7 +395,7 @@ $(document).ready(function() {
   function gameOver(){
     if(current[rot].some(index => squares[pos + index].classList.contains("occupied"))){
       $(".game-state").text("Game Over");
-      $("#start-button").text("XXXXX");
+      $("#start-button").text("Try again");
       $("#start-button").attr("class", "dead");
       clearInterval(timerId);
     }
@@ -399,12 +404,17 @@ $(document).ready(function() {
 
   //Use a button to control game start and pausing
   $("#start-button").click(function() {
-    if(!paused) {
+    if($(this).text() === "Try again") {
+      newGame();
+      paused = true;
+    }
+    else if(!paused) {
       clearInterval(timerId);
       timerId = null;
       gameContainer.classList.add("paused");
       $(this).text("Continue");
       $(this).attr("class", "stopped");
+      paused = true;
     }
     else {
       //Make sure the next box is updated
@@ -415,11 +425,8 @@ $(document).ready(function() {
       timerId = setInterval(descend, gameSpeed);
       $(this).text("Pause");
       $(this).attr("class", "running");
+      paused = false
     }
-
-    //Toggle pause state
-    paused = !paused;
-
   });
 
   //Allow instructions to be collapsed
