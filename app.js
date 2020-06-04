@@ -215,18 +215,23 @@ $(document).ready(function() {
   function control(e) {
     if(!paused){
       if(e.keyCode === 37) {
+        e.preventDefault();
         moveLeft();
       }
       else if(e.keyCode === 38) {
+        e.preventDefault();
         rotate(1);
       }
       else if(e.keyCode === 39) {
+        e.preventDefault();
         moveRight();
       }
       else if(e.keyCode === 40) {
+        e.preventDefault();
         rotate(3);
       }
-      else if(e.keyCode === 17) {
+      else if(e.keyCode === 32) {
+        e.preventDefault();
         descend();
       }
     }
@@ -398,8 +403,8 @@ $(document).ready(function() {
 
   //Allow instructions to be collapsed
   $(".collapsing").click(function() {
-    $(this).toggleClass("active")
-    $(this).siblings().toggle()
+    $(this).toggleClass("active");
+    $(this).siblings().toggle();
   })
 
 })
