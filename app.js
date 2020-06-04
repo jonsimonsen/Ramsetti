@@ -9,64 +9,16 @@ $(document).ready(function() {
   const width = 12;     //Includes walls
   const startRow = -3;  //Number of invisible rows above the game board (as a negative number)
 
-  let gameContainer = document.getElementsByClassName("grid")[0];
-
-  //Create roof (should be invisible)
-  for(let i = startRow; i < 0; i++) {
-    let leftWall = document.createElement("div");
-    leftWall.className = "roof wall";
-    gameContainer.appendChild(leftWall);
-
-    for(let j = 0; j < width - 2; j++) {
-      let roofSquare = document.createElement("div");
-      roofSquare.className = "roof";
-      gameContainer.appendChild(roofSquare);
-    }
-
-    let rightWall = document.createElement("div");
-    rightWall.className = "roof wall";
-    gameContainer.appendChild(rightWall);
-  }
-
-  //Create main game board
-  for(let i = 0; i < height; i++) {
-    let leftWall = document.createElement("div");
-    leftWall.className = "wall";
-    gameContainer.appendChild(leftWall);
-
-    //Create row
-    for(let j = 0; j < width - 2; j++) {
-      gameContainer.appendChild(document.createElement("div"));
-    }
-
-    let rightWall = document.createElement("div");
-    rightWall.className = "wall";
-    gameContainer.appendChild(rightWall);
-  }
-
-  //Create floor
-  for(let i = 0; i < width; i++) {
-    let floorSquare = document.createElement("div");
-    floorSquare.className = "wall";
-    gameContainer.appendChild(floorSquare);
-  }
-
-  //Create nextbox
-  let nextBox = document.getElementsByClassName("next-box")[0];
-
-  for(let i = 0; i < 16; i++) {
-    nextBox.appendChild(document.createElement("div"));
-  }
-
 // -----------------------\
 // Variable initialization\
 // -----------------------\
 
-  let squares = Array.from(document.querySelectorAll('.grid div'));
+  let gameContainer;
+  let squares;
 
   //Animation
-  let paused = true;    //Keep track of pause state
-  let timerId = null;   //Used for gravity ticks.
+  let paused;    //Keep track of pause state
+  let timerId;   //Used for gravity ticks.
   let gameSpeed = 400;  //milliseconds between gravity ticks
   let maxSpeed = 80;    //highest speed before going to killSpeed
   let killSpeed = 40;   //final level speed
@@ -75,8 +27,8 @@ $(document).ready(function() {
 
   //Scoring
   const baseScore = 100800;
-  let score = 0;
-  let lines = 0;
+  let score;
+  let lines;
   const linesPerLevel = 1;
 
   //Tetriminoes
@@ -139,12 +91,75 @@ $(document).ready(function() {
   let currentColor;
   let current;
   let nextColor;
-  let next = makePiece();
+  let next;
   let pos;
   let rot;
 
-  showNext();
-  spawn();
+  newGame();
+
+  //Set up a new Game
+  function newGame() {
+    gameContainer = document.getElementsByClassName("grid")[0];
+
+    //Create roof (should be invisible)
+    for(let i = startRow; i < 0; i++) {
+      let leftWall = document.createElement("div");
+      leftWall.className = "roof wall";
+      gameContainer.appendChild(leftWall);
+
+      for(let j = 0; j < width - 2; j++) {
+        let roofSquare = document.createElement("div");
+        roofSquare.className = "roof";
+        gameContainer.appendChild(roofSquare);
+      }
+
+      let rightWall = document.createElement("div");
+      rightWall.className = "roof wall";
+      gameContainer.appendChild(rightWall);
+    }
+
+    //Create main game board
+    for(let i = 0; i < height; i++) {
+      let leftWall = document.createElement("div");
+      leftWall.className = "wall";
+      gameContainer.appendChild(leftWall);
+
+      //Create row
+      for(let j = 0; j < width - 2; j++) {
+        gameContainer.appendChild(document.createElement("div"));
+      }
+
+      let rightWall = document.createElement("div");
+      rightWall.className = "wall";
+      gameContainer.appendChild(rightWall);
+    }
+
+    //Create floor
+    for(let i = 0; i < width; i++) {
+      let floorSquare = document.createElement("div");
+      floorSquare.className = "wall";
+      gameContainer.appendChild(floorSquare);
+    }
+
+    //Create nextbox
+    let nextBox = document.getElementsByClassName("next-box")[0];
+
+    for(let i = 0; i < 16; i++) {
+      nextBox.appendChild(document.createElement("div"));
+    }
+
+    squares = Array.from(document.querySelectorAll('.grid div'));
+    score = 0;
+    lines = 0;
+    paused = true;
+    timerId = null;
+    next = makePiece();
+
+    showNext();
+    spawn();
+    $("#start-button").attr("class", "initial");
+    $("#start-button").text("Start");
+  }
 
   //Create a new tetrimino
   function makePiece() {
@@ -375,6 +390,8 @@ $(document).ready(function() {
   function gameOver(){
     if(current[rot].some(index => squares[pos + index].classList.contains("occupied"))){
       $(".game-state").text("Game Over");
+      $("#start-button").text("XXXXX");
+      $("#start-button").attr("class", "dead");
       clearInterval(timerId);
     }
   }
@@ -387,6 +404,7 @@ $(document).ready(function() {
       timerId = null;
       gameContainer.classList.add("paused");
       $(this).text("Continue");
+      $(this).attr("class", "stopped");
     }
     else {
       //Make sure the next box is updated
@@ -396,6 +414,7 @@ $(document).ready(function() {
       gameContainer.classList.remove("paused");
       timerId = setInterval(descend, gameSpeed);
       $(this).text("Pause");
+      $(this).attr("class", "running");
     }
 
     //Toggle pause state

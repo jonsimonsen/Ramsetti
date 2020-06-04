@@ -58,7 +58,6 @@ body {
 #start-button {
   font-size: 1.5rem;
   padding: 0.5rem;
-  background-color: green;
   color: white;
 }
 
@@ -192,9 +191,10 @@ body {
 }
 
 /*******************
- *Under development*
+ *JS related styles*
  *******************/
 
+/*Styling collapse controlling button(heading) for instructions*/
 .collapsing {
   cursor: pointer;
   padding: 1rem;
@@ -208,6 +208,23 @@ body {
 .active, .collapsing:hover {
   background-color: #ccc;
 }
+
+/*Start button styles*/
+#start-button.running {
+  background-color: red;
+}
+
+#start-button.stopped, #start-button.initial {
+  background-color: green;
+}
+
+#start-button.dead {
+  background-color: black;
+}
+
+/*******************
+ *Responsive styles*
+ *******************/
 
 @media all and (max-width: 900px) {
   .main-row {
