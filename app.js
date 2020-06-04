@@ -1,4 +1,3 @@
-/*document.addEventListener('DOMContentLoaded', () => {*/
 $(document).ready(function() {
 
   // ----------------------------\
@@ -132,21 +131,10 @@ $(document).ready(function() {
     [width + 1, width + 2, width * 2 + 1, width * 2 + 2]
   ]
 
-  //Code that can be used for debugging. TODO: Consider removing it.
-  /*let col = 0
-  oTetrimino.forEach(rot => {
-    console.log(rot)
-    rot.forEach(filled => {
-      console.log(filled)
-      squares[filled + col].classList.add('tetrimino')
-    })
-    col += 4
-  })*/
-
   const tetriminoes = [jTetrimino, lTetrimino, tTetrimino, zTetrimino, sTetrimino, iTetrimino, oTetrimino]
 
-  // Main Code\
   // ---------\
+  // Main Code\
   // ---------\
 
   //Create a tetrimino at the top (would make sense to use classes eventually)
@@ -156,7 +144,6 @@ $(document).ready(function() {
   let next = makePiece()
   let pos
   let rot
-
 
   showNext()
   spawn()

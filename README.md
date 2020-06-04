@@ -27,6 +27,8 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 -Bower(Yarn), node, grunt, gulp  
 -iTerm  
 -semikolon i JavaScript?  
+-id vs. class  
+-space?  
 
 # Solved issues/new features
 -Removed duplicate css code by using the same classes on elements that should share styles.  
