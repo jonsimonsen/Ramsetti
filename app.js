@@ -26,65 +26,64 @@ $(document).ready(function() {
   let lines;
   const linesPerLevel = 1;
 
+  //Class specific constants (for use in the Tetrimino class)
+  const _startPos = 4;
+  const _startRotation = 0;
+  const _colors = ['purple', 'orange', 'gray'];
+
+  //Tetriminoes
+  const _jTetrimino = [
+    [width, width + 1, width + 2, width * 2 + 2],
+    [1, width + 1, width * 2, width * 2 + 1],
+    [0, width, width + 1, width + 2],
+    [1, 2, width + 1, width * 2 + 1]
+  ];
+
+  const _zTetrimino = [
+    [width, width + 1, width * 2 + 1, width * 2 + 2],
+    [2, width + 1, width + 2, width * 2 + 1],
+    [width, width + 1, width * 2 + 1, width * 2 + 2],
+    [2, width + 1, width + 2, width * 2 + 1]
+  ];
+
+  const _lTetrimino = [
+    [width, width + 1, width + 2, width * 2],
+    [0, 1, width + 1, width * 2 + 1],
+    [2, width, width + 1, width + 2],
+    [1, width + 1, width * 2 + 1, width * 2 + 2]
+  ];
+
+  const _sTetrimino = [
+    [width + 1, width + 2, width * 2, width * 2 + 1],
+    [1, width + 1, width + 2, width * 2 + 2],
+    [width + 1, width + 2, width * 2, width * 2 + 1],
+    [1, width + 1, width + 2, width * 2 + 2]
+  ];
+
+  const _tTetrimino = [
+    [width, width + 1, width + 2, width * 2 + 1],
+    [1, width, width + 1, width * 2 + 1],
+    [1, width, width + 1, width + 2],
+    [1, width + 1, width + 2, width * 2 + 1]
+  ];
+
+  const _iTetrimino = [
+    [width * 2, width * 2 + 1, width * 2 + 2, width * 2 + 3],
+    [2, width + 2, width * 2 + 2, width * 3 + 2],
+    [width * 2, width * 2 + 1, width * 2 + 2, width * 2 + 3],
+    [2, width + 2, width * 2 + 2, width * 3 + 2]
+  ];
+
+  const _oTetrimino = [
+    [width + 1, width + 2, width * 2 + 1, width * 2 + 2],
+    [width + 1, width + 2, width * 2 + 1, width * 2 + 2],
+    [width + 1, width + 2, width * 2 + 1, width * 2 + 2],
+    [width + 1, width + 2, width * 2 + 1, width * 2 + 2]
+  ];
+
+  const _tetriminoes = [_jTetrimino, _zTetrimino, _lTetrimino, _sTetrimino, _tTetrimino, _iTetrimino, _oTetrimino];
 
   class Tetrimino {
-    //Class specific constants
-    const _startPos = 4;
-    const _startRotation = 0;
-    const _colors = ['purple', 'orange', 'gray'];
-
-    //Tetriminoes
-    const _jTetrimino = [
-      [width, width + 1, width + 2, width * 2 + 2],
-      [1, width + 1, width * 2, width * 2 + 1],
-      [0, width, width + 1, width + 2],
-      [1, 2, width + 1, width * 2 + 1]
-    ];
-
-    const _zTetrimino = [
-      [width, width + 1, width * 2 + 1, width * 2 + 2],
-      [2, width + 1, width + 2, width * 2 + 1],
-      [width, width + 1, width * 2 + 1, width * 2 + 2],
-      [2, width + 1, width + 2, width * 2 + 1]
-    ];
-
-    const _lTetrimino = [
-      [width, width + 1, width + 2, width * 2],
-      [0, 1, width + 1, width * 2 + 1],
-      [2, width, width + 1, width + 2],
-      [1, width + 1, width * 2 + 1, width * 2 + 2]
-    ];
-
-    const _sTetrimino = [
-      [width + 1, width + 2, width * 2, width * 2 + 1],
-      [1, width + 1, width + 2, width * 2 + 2],
-      [width + 1, width + 2, width * 2, width * 2 + 1],
-      [1, width + 1, width + 2, width * 2 + 2]
-    ];
-
-    const _tTetrimino = [
-      [width, width + 1, width + 2, width * 2 + 1],
-      [1, width, width + 1, width * 2 + 1],
-      [1, width, width + 1, width + 2],
-      [1, width + 1, width + 2, width * 2 + 1]
-    ];
-
-    const _iTetrimino = [
-      [width * 2, width * 2 + 1, width * 2 + 2, width * 2 + 3],
-      [2, width + 2, width * 2 + 2, width * 3 + 2],
-      [width * 2, width * 2 + 1, width * 2 + 2, width * 2 + 3],
-      [2, width + 2, width * 2 + 2, width * 3 + 2]
-    ];
-
-    const _oTetrimino = [
-      [width + 1, width + 2, width * 2 + 1, width * 2 + 2],
-      [width + 1, width + 2, width * 2 + 1, width * 2 + 2],
-      [width + 1, width + 2, width * 2 + 1, width * 2 + 2],
-      [width + 1, width + 2, width * 2 + 1, width * 2 + 2]
-    ];
-
-    const _tetriminoes = [_jTetrimino, _zTetrimino, _lTetrimino, _sTetrimino, _tTetrimino, _iTetrimino, _oTetrimino];
-
     //Construct a new piece
     constructor() {
       this._position = _startPos;
@@ -94,17 +93,17 @@ $(document).ready(function() {
 
     //Helper for the constructor (set _piece and _color based on a random selection)
     _makePiece() {
-      let selection = Math.floor(Math.random() * tetriminoes.length);
-      if(floor(selection / 2) === 0){
-        this._color = this._colors[0];
+      let selection = Math.floor(Math.random() * _tetriminoes.length);
+      if(Math.floor(selection / 2) === 0){
+        this._color = _colors[0];
       }
-      else if(floor(selection / 2) === 1){
-        this._color = this._colors[1];
+      else if(Math.floor(selection / 2) === 1){
+        this._color = _colors[1];
       }
       else{
-        this._color = this._colors[2];
+        this._color = _colors[2];
       }
-      this._piece = this._tetriminoes[selection];
+      this._piece = _tetriminoes[selection];
     }
 
     /*Getters and setters*/

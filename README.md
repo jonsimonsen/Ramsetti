@@ -19,9 +19,8 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 -Instructions can be clearer.  
 
 # Currently prioritized issues
--Include more JQuery in project.  
+-Include more JQuery in project?  
 -Find out how to section the footer.  
--Do we actually use the universal selector since some elements are overriding it later? Maybe we can put it on sections instead.  
 -Unrelated: font size 100%?  
 -Bower(Yarn), node, grunt, gulp  
 -iTerm  
@@ -46,3 +45,4 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 -Using JQuery for some of the dynamic elements on the page (startbutton, score display and toggling instructions/how to play)  
 -Fixed a bug that caused the window to scroll when rotating pieces by using keydown for the eventlistener and preventDefault.  
 -Startbutton text changes based on game state.  
+-Made a class for tetriminoes. TODO: See if more of the functions can be methods of the class.  
