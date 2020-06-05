@@ -83,6 +83,10 @@ $(document).ready(function() {
 
   const _tetriminoes = [_jTetrimino, _zTetrimino, _lTetrimino, _sTetrimino, _tTetrimino, _iTetrimino, _oTetrimino];
 
+  // -----\
+  // Class\
+  // -----\
+
   class Tetrimino {
     //Construct a new piece
     constructor() {
@@ -139,11 +143,15 @@ $(document).ready(function() {
   // Main Code\
   // ---------\
 
-  //Create a tetrimino at the top (would make sense to use classes eventually)
+  //Variables for the current and next tetriminoes
   let current;
   let next;
 
   newGame();
+
+  // ---------\
+  // Functions\
+  // ---------\
 
   //Set up a new Game
   function newGame() {
@@ -213,36 +221,6 @@ $(document).ready(function() {
     $("#start-button").text("Start");
   }
 
-  //Create a new tetrimino
-  /*function makePiece() {
-    let selection = Math.floor(Math.random() * tetriminoes.length);
-    let color;
-    if(floor(selection / 2) === 0){
-      color = colors[0];
-    }
-    else if(floor(selection / 2) === 1){
-      color = colors[1];
-    }
-    else{
-      color = colors[2];
-    }
-    return Tetrimino(tetriminoes[selection], color);
-  }*/
-
-  //Create a new tetrimino
-  function spawn() {
-    //Update game container and squares
-    gameContainer = document.getElementsByClassName("grid")[0];
-    squares = Array.from(document.querySelectorAll('.grid div'));
-
-    current = next;
-    gameOver();
-    next = new Tetrimino();
-    draw();
-    if(!paused){
-      showNext();
-    }
-  }
 
   //Display a new tetrimino in the nextbox
   function showNext() {
@@ -262,6 +240,34 @@ $(document).ready(function() {
     })
   }
 
+
+  //Create a new tetrimino
+  function spawn() {
+    //Update game container and squares
+    gameContainer = document.getElementsByClassName("grid")[0];
+    squares = Array.from(document.querySelectorAll('.grid div'));
+
+    current = next;
+    gameOver();
+    next = new Tetrimino();
+    draw();
+    if(!paused){
+      showNext();
+    }
+  }
+
+
+  //Game over check
+  function gameOver(){
+    if(current.piece.some(index => squares[current.position + index].classList.contains("occupied"))){
+      $(".game-state").text("Game Over");
+      $("#start-button").text("Try again");
+      $("#start-button").attr("class", "dead");
+      clearInterval(timerId);
+    }
+  }
+
+
   //draw tetrimino
   function draw() {
     current.piece.forEach(filled => {
@@ -276,10 +282,15 @@ $(document).ready(function() {
     })
   }
 
+
   //Assign functions to keycodes
   function control(e) {
     if(!paused){
-      if(e.keyCode === 37) {
+      if(e.keyCode === 32) {
+        e.preventDefault();
+        descend();
+      }
+      else if(e.keyCode === 37) {
         e.preventDefault();
         moveLeft();
       }
@@ -295,25 +306,25 @@ $(document).ready(function() {
         e.preventDefault();
         rotate(3);
       }
-      else if(e.keyCode === 32) {
-        e.preventDefault();
-        descend();
-      }
     }
   }
-  document.addEventListener('keydown', control);
+
 
   //Make tetrimino descend
   function descend() {
-    undraw();
-    current.position += width;
+    let landed = rest();
+    if(landed) {
+      undraw();
+      current.position += width;
+    }
     draw();
-    rest();
+    //rest();
   }
 
-  //Stop if tetrmino lands on the floor or previously placed tetriminoes)
+
+  //Update the game state and spawn a new tetrimino if the current tetrimino lands on the floor or previously placed tetriminoes.
+  //Return true if that happened and false otherwise.
   function rest() {
-    //Optimally, this should happen just before the tetrimino moves to the next position
     if(current.piece.some(index => squares[current.position + index + width].classList.contains('occupied') || squares[current.position + index + width].classList.contains('wall'))) {
       current.piece.forEach(index => squares[current.position + index].classList.add('occupied'));
 
@@ -322,39 +333,11 @@ $(document).ready(function() {
 
       //Spawn a new tetrimino
       spawn();
+      return true;
     }
+    return false;
   }
 
-  //Move left if possible
-  function moveLeft() {
-    if(!(current.piece.some(index => squares[current.position + index - 1].classList.contains("occupied"))) && !(current.piece.some(index => squares[current.position + index - 1].classList.contains("wall")))) {
-      undraw();
-      current.position--;
-      draw();
-    }
-  }
-
-  //Move right if possible
-  function moveRight() {
-    if(!(current.piece.some(index => squares[current.position + index + 1].classList.contains("occupied"))) && !(current.piece.some(index => squares[current.position + index + 1].classList.contains("wall")))) {
-      undraw();
-      current.position++;
-      draw();
-    }
-  }
-
-  //Rotate if possible (quarters should tells the number of 90 degree clockwise rotations)
-  function rotate(quarters) {
-    let tmp = (current.rotation + quarters) % 4;
-    let newPiece = current.getNewPiece(tmp)
-
-    //Confirm that all squares of the rotated tetrimino inhabit unoccupied spaces.
-    if(!(newPiece.some(index => squares[current.position + index].classList.contains("occupied"))) && !(newPiece.some(index => squares[current.position + index].classList.contains("wall")))) {
-      undraw();
-      current.rotation = tmp;
-      draw();
-    }
-  }
 
   //Update game board and fix score if necessary
   function update(){
@@ -425,6 +408,7 @@ $(document).ready(function() {
     $("#score").text(score);
   }
 
+
   //Increase game speed
   function bumpSpeed(){
     if(gameSpeed > maxSpeed){
@@ -437,16 +421,45 @@ $(document).ready(function() {
     timerId = setInterval(descend, gameSpeed);
   }
 
-  //Game over check
-  function gameOver(){
-    if(current.piece.some(index => squares[current.position + index].classList.contains("occupied"))){
-      $(".game-state").text("Game Over");
-      $("#start-button").text("Try again");
-      $("#start-button").attr("class", "dead");
-      clearInterval(timerId);
+
+  //Move left if possible
+  function moveLeft() {
+    if(!(current.piece.some(index => squares[current.position + index - 1].classList.contains("occupied"))) && !(current.piece.some(index => squares[current.position + index - 1].classList.contains("wall")))) {
+      undraw();
+      current.position--;
+      draw();
     }
   }
 
+  //Move right if possible
+  function moveRight() {
+    if(!(current.piece.some(index => squares[current.position + index + 1].classList.contains("occupied"))) && !(current.piece.some(index => squares[current.position + index + 1].classList.contains("wall")))) {
+      undraw();
+      current.position++;
+      draw();
+    }
+  }
+
+
+  //Rotate if possible (quarters should tells the number of 90 degree clockwise rotations)
+  function rotate(quarters) {
+    let tmp = (current.rotation + quarters) % 4;
+    let newPiece = current.getNewPiece(tmp)
+
+    //Confirm that all squares of the rotated tetrimino inhabit unoccupied spaces.
+    if(!(newPiece.some(index => squares[current.position + index].classList.contains("occupied"))) && !(newPiece.some(index => squares[current.position + index].classList.contains("wall")))) {
+      undraw();
+      current.rotation = tmp;
+      draw();
+    }
+  }
+
+  // ------\
+  // Events\
+  // ------\
+
+  //Handle key presses
+  document.addEventListener('keydown', control);
 
   //Use a button to control game start and pausing
   $("#start-button").click(function() {
