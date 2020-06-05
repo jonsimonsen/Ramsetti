@@ -11,8 +11,6 @@ The app is currently being developed.
 The settings are not supposed to resemble a real game yet. Levels are shorter to allow for quicker testing.  
 
 # Issues
--No option to move or rotate once a piece has touched another piece.  
--Some timing issues can result in overlapping pieces.  
 -High scores not implemented yet.  
 -Scoring algorithm doesn't award playing at higher speeds enough.  
 -The background image had not been added to the repo.  
@@ -46,3 +44,4 @@ The settings are not supposed to resemble a real game yet. Levels are shorter to
 -Fixed a bug that caused the window to scroll when rotating pieces by using keydown for the eventlistener and preventDefault.  
 -Startbutton text changes based on game state.  
 -Made a class for tetriminoes. TODO: See if more of the functions can be methods of the class.  
+-Solved timing issue and seemingly the overlap bug by reordering function calls in the rest function.  

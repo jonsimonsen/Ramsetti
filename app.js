@@ -313,12 +313,11 @@ $(document).ready(function() {
   //Make tetrimino descend
   function descend() {
     let landed = rest();
-    if(landed) {
+    if(!landed) {
       undraw();
       current.position += width;
     }
     draw();
-    //rest();
   }
 
 
